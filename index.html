@@ -63,38 +63,17 @@
             </line>
             Sorry, your browser does not support inline SVG.
         </svg>
-        <header class="header">
-            <nav class="nav">
-                <div class="nav-bar">
-                    <input type="checkbox" id="toggle" style="display:none;">
-                    <label for="toggle" id="toggleLabel" class="nav-bar-item flex-item burguer-gap hamburguer">
-                        <div class="burguer-tab"></div>
-                    </label>
-                    <div class="nav-bar-item">
-                        <a href="#SectionSkills" value="SectionSkills" class="skills create-border-hover">SKILLS</a>
-                    </div>
-                    <div class="nav-bar-item">
-                        <a href="#SectionHome" value="SectionHome" class="home" id="home" onclick="onClick(this)">HOME</a>
-                    </div>
-                    <div class="nav-bar-item">
-                        <a href="#SectionAboutMe" value="SectionAboutMe" rel="noreferrer" class="aboutme create-border-hover" id="aboutMe" onclick="onClick(this)">ABOUT me</a>
-                    </div>
-                </div>
-            </nav>
-        </header> 
         <main class="main">  
         <section class="section-home show-content transition-smooth" id="SectionHome" value = "active">
             <div class="introduction-text" id="introduction-text">
-                <h1 class="">
-                    <span class="">
-                      <span class=""></span>
-                    </span>
-                    <span class="typemachine">Hi, I'm Leo and I'm glad you are here!</span>
-
+                <h1 class="pd-bot-2" id="mainText">
+                    
                   </h1>
-                  <p>I'm Telecomunications Enigeer from 2018  
-                    and Junior Front-End Dev. Please see around.
-                </p>
+                  <label for="menuAside" id="menu" onclick="toggleMenu()">
+                    <span class="h2-text">Menu</span></label>
+                  <br>
+                  <label for= "footer" onclick="toggleFooter()">
+                    <span class="h2-text">Contact me</span></label>
             </div>
         </section>
         <section class="section-about hidden-content" id="SectionAboutMe">
@@ -107,12 +86,12 @@
                     <a href="CV-Boucourt-Leandro (1).pdf" title="cv-download" download="CV-Boucourt-Leandro"  class="h3-text text create-border-hover">RESUME</a>
                     <img src="https://img.icons8.com/ios-filled/50/FFFFFF/expand-arrow--v1.png" alt="download-arrow" class="arrow animation-download"/>
                 </div>
-                
         </section>
     </main>
-    <aside id="menuAside" class="menu-burguer">
-            <nav class="nav-burguer"> 
-            </nav> 
+    <aside id="menuAside" class="menu">
+                <div class="arrow arrow-left" onclick="toggleMenu()">
+                    <img  alt="arrow" src="https://img.icons8.com/ios/50/ffffff/back--v1.png"/>
+                </div>
         <div class="container-menu">       
             <div>Contact me</div>
             <div>
@@ -121,14 +100,35 @@
             </div>
         </div>
     </aside>
-    <footer>
-        <div class="container-menu">       
-            <div>Contact me</div>
-            <div>
-                <div><h2>Linkedin</h2></div>
-                <div><h2>WhatsApp</h2></div>
-            </div>
+    <footer id="footer">
+        <div class="arrow-up arrow" id="arrow-up" onclick="toggleFooter()">
+            <img alt="arrow" src="https://img.icons8.com/ios/50/ffffff/back--v1.png"/>
         </div>
+        <div class="container-menu" id="container-menu">  
+            <form class="form" id="form">
+                <div id="formInfo" class="form-info">
+                    <div>
+                        <label for="name">Name</label>
+                        <input type="text" id="name" size="">
+                    </div>
+                    <div>
+                        <label for="lastName">LastName</label>
+                        <input type="text" id="lastName" size="">
+                    </div>
+                    <div>
+                        <label for="email">Email</label>
+                        <input type="text" id="email" size="">
+                    </div>
+
+                </div>
+                <div class="message" id="message-area">
+                    <label for="textArea">Message!</label>
+                    <textarea id="textArea" name="message"  class="text-area"></textarea>
+                </div>  
+
+                </form>
+        </div>     
+
     </footer>
     <canvas class="background"></canvas>
     </div>
@@ -138,7 +138,7 @@
     <script>
          window.onload = function(){
             generateParticles();
-           // typeMachine();
+            mainText();
             }
 
      function generateParticles(){
@@ -159,52 +159,22 @@
                 maxParticles: 50
             }}]});
      };
-     
-  /*   function typeMachine(){
-        var textWrapper = document.querySelector('.letters');
-        
-        var textTarget = textWrapper.innerHTML;
-        var text = [];
-        [...textTarget].forEach(function(value,index,array){
-            console.log(value);
-            value = (value== " ") ? "&nbsp;" : value;
-            text += "<span class='letter'>"+value+"</span>"
-        });
-        textWrapper.innerHTML = text;
-        console.log(anime);
+     function mainText(){
+    const mainText = document.getElementById("mainText");
+    console.log(mainText);
+    setTimeout(()=>{
+        mainText.innerHTML = '<span class="type-machine type-machine-1">Hi,</span>';
+    },1000) 
+    setTimeout(()=>{
+        document.querySelector(".type-machine-1").style.border="none";
+        const span = document.createElement("span");
+        span.classList.add("type-machine","type-machine-2");
+        span.innerHTML = "I'm Leo and I'm glad you are here!";
+        mainText.append(span);
 
-       // textWrapper.innerHTML = textWrapper.textContent.replace(/([^\x00-\x80]|\w)/g, "<span class='letter'>$&</span>");
-      if document.
-        var ancho = 800;
-        anime.timeline({loop: true})
-        .add({
-            targets: '.ml11 .line',
-            scaleY: [0,1],
-            opacity: [0.5,1],
-            easing: "easeOutExpo",
-            duration: 800
-        })
-        .add({
-            targets: '.line',
-            translateX: [0, ancho],
-            easing: "easeOutExpo",
-            duration: 800,
-            delay: 100
-        }).add({
-            targets: '.letter',
-            opacity: [0,1],
-            easing: "easeOutExpo",
-            duration: 800,
-            offset: '-=775',
-            delay: 200
-        }).add({
-            targets: '.ml11',
-            opacity: 0,
-            duration: 1000,
-            easing: "easeOutExpo",
-            delay: 1000
-        });
-            }*/
+    },5000);
+};
+
     </script>
     </body>
 </html>
