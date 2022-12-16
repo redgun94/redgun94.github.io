@@ -139,6 +139,8 @@
          window.onload = function(){
             generateParticles();
             mainText();
+            toggleFooter();
+            toggleMenu();
             }
 
      function generateParticles(){
@@ -174,7 +176,42 @@
 
     },5000);
 };
-    
+function toggleMenu(){
+    const menuAside = document.getElementById("menuAside");
+    menuAside.classList.toggle("show-aside");
+    const opacity = (menuAside.classList.contains("show-aside"))? "0.1": "1";
+    document.querySelector(".main").style.opacity = opacity;
+}
+function toggleFooter(){
+    const footer = document.getElementById("footer");
+    const arrowUp = document.getElementById("arrow-up");
+    const form = document.getElementById("form");
+    const formNodes = [...form.children];
+    const main = document.querySelector(".main");
+    footer.classList.toggle("show-footer");
+    if (footer.classList.contains("show-footer")){
+        setTimeout(()=>{
+            arrowUp.style.display = "block";
+            form.style.display = "flex";
+            formNodes.forEach((value,index,arr)=>{
+                console.log(value);
+            value.style.display="flex";
+        })
+        },500);
+        main.style.opacity = "0.10";
+    }
+    else{
+
+        arrowUp.style.display = "none";
+        setTimeout(()=>{form.style.display = "none";},300);
+        setTimeout(()=>{
+            formNodes.forEach((value,index,arr)=>{
+                value.style.display="none";
+            })
+            main.style.opacity = "1";
+        },500)
+    }
+}
     </script>
 
     </body>
